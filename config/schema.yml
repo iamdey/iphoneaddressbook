@@ -1,0 +1,140 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  ABGroup:
+    _attributes: { phpName: Abgroup }
+    ROWID: { type: VARCHAR, primaryKey: true, autoIncrement: true, required: false }
+    Name: { type: VARCHAR, required: false }
+    ExternalIdentifier: { type: VARCHAR, required: false }
+    StoreID: { type: VARCHAR, primaryKey: true, required: false }
+  ABGroupChanges:
+    _attributes: { phpName: Abgroupchanges }
+    record: { type: VARCHAR, primaryKey: true, required: false }
+    type: { type: VARCHAR, primaryKey: true, required: false }
+    ExternalIdentifier: { type: VARCHAR, required: false }
+    StoreID: { type: VARCHAR, primaryKey: true, required: false }
+  ABGroupMembers:
+    _attributes: { phpName: Abgroupmembers }
+    UID: { type: VARCHAR, primaryKey: true, autoIncrement: true, required: false }
+    group_id: { type: VARCHAR, primaryKey: true, required: false }
+    member_type: { type: VARCHAR, primaryKey: true, required: false }
+    member_id: { type: VARCHAR, primaryKey: true, required: false }
+    _indexes: { sqlite_autoindex_ABGroupMembers_1: [group_id, member_type, member_id] }
+  ABMultiValue:
+    _attributes: { phpName: Abmultivalue }
+    UID: { type: VARCHAR, primaryKey: true, autoIncrement: true, required: false }
+    record_id: { type: VARCHAR, primaryKey: true, required: false }
+    property: { type: VARCHAR, primaryKey: true, required: false }
+    identifier: { type: VARCHAR, primaryKey: true, required: false }
+    label: { type: VARCHAR, primaryKey: true, required: false }
+    value: { type: VARCHAR, required: false }
+    _indexes: { ABMultiValueLabelIndex: [label], ABMultiValueRecordIDIndex: [record_id] }
+  ABMultiValueEntry:
+    _attributes: { phpName: Abmultivalueentry }
+    parent_id: { type: VARCHAR, primaryKey: true, required: false }
+    key: { type: VARCHAR, primaryKey: true, required: false }
+    value: { type: VARCHAR, required: false }
+    _indexes: { ABMultiValueEntryKeyIndex: [key], sqlite_autoindex_ABMultiValueEntry_1: [parent_id, key] }
+  ABMultiValueEntryKey:
+    _attributes: { phpName: Abmultivalueentrykey }
+    value: { type: VARCHAR, required: false }
+    _indexes: { sqlite_autoindex_ABMultiValueEntryKey_1: [value] }
+  ABMultiValueLabel:
+    _attributes: { phpName: Abmultivaluelabel }
+    value: { type: VARCHAR, required: false }
+    _indexes: { sqlite_autoindex_ABMultiValueLabel_1: [value] }
+  ABPerson:
+    _attributes: { phpName: Abperson }
+    ROWID: { type: VARCHAR, primaryKey: true, autoIncrement: true, required: false }
+    First: { type: VARCHAR, required: false }
+    Last: { type: VARCHAR, required: false }
+    Middle: { type: VARCHAR, required: false }
+    FirstPhonetic: { type: VARCHAR, required: false }
+    MiddlePhonetic: { type: VARCHAR, required: false }
+    LastPhonetic: { type: VARCHAR, required: false }
+    Organization: { type: VARCHAR, required: false }
+    Department: { type: VARCHAR, required: false }
+    Note: { type: VARCHAR, required: false }
+    Kind: { type: VARCHAR, primaryKey: true, required: false }
+    Birthday: { type: VARCHAR, required: false }
+    JobTitle: { type: VARCHAR, required: false }
+    Nickname: { type: VARCHAR, required: false }
+    Prefix: { type: VARCHAR, required: false }
+    Suffix: { type: VARCHAR, required: false }
+    FirstSort: { type: VARCHAR, required: false }
+    LastSort: { type: VARCHAR, required: false }
+    CreationDate: { type: VARCHAR, primaryKey: true, required: false }
+    ModificationDate: { type: VARCHAR, primaryKey: true, required: false }
+    CompositeNameFallback: { type: VARCHAR, required: false }
+    ExternalIdentifier: { type: VARCHAR, required: false }
+    StoreID: { type: VARCHAR, primaryKey: true, required: false }
+    DisplayName: { type: VARCHAR, required: false }
+    FirstSortSection: { type: VARCHAR, required: false }
+    LastSortSection: { type: VARCHAR, required: false }
+    FirstSortLanguageIndex: { type: VARCHAR, primaryKey: true, required: false, defaultValue: '2147483647' }
+    LastSortLanguageIndex: { type: VARCHAR, primaryKey: true, required: false, defaultValue: '2147483647' }
+    _indexes: { ABFirstSortStore: [StoreID, FirstSortLanguageIndex, FirstSortSection, FirstSort], ABLastSortIndex: [LastSortLanguageIndex, LastSortSection, LastSort], ABFirstSortIndex: [FirstSortLanguageIndex, FirstSortSection, FirstSort] }
+  ABPersonChanges:
+    _attributes: { phpName: Abpersonchanges }
+    record: { type: VARCHAR, primaryKey: true, required: false }
+    type: { type: VARCHAR, primaryKey: true, required: false }
+    Image: { type: VARCHAR, primaryKey: true, required: false }
+    ExternalIdentifier: { type: VARCHAR, required: false }
+    StoreID: { type: VARCHAR, primaryKey: true, required: false }
+  ABPersonMultiValueDeletes:
+    _attributes: { phpName: Abpersonmultivaluedeletes }
+    record_id: { type: VARCHAR, primaryKey: true, required: false }
+    property_id: { type: VARCHAR, primaryKey: true, required: false }
+    identifier: { type: VARCHAR, primaryKey: true, required: false }
+  ABPersonSearchKey:
+    _attributes: { phpName: Abpersonsearchkey }
+    person_id: { type: VARCHAR, primaryKey: true, required: false }
+    value: { type: VARCHAR, required: false }
+    _indexes: { sqlite_autoindex_ABPersonSearchKey_1: [person_id] }
+  ABPhoneLastFour:
+    _attributes: { phpName: Abphonelastfour }
+    multivalue_id: { type: VARCHAR, primaryKey: true, autoIncrement: true, required: false }
+    value: { type: VARCHAR, required: false }
+    _indexes: { ABPhoneLastFourIndex: [value] }
+  ABRecent:
+    _attributes: { phpName: Abrecent }
+    date: { type: VARCHAR, primaryKey: true, required: false }
+    name: { type: VARCHAR, required: false }
+    property: { type: VARCHAR, primaryKey: true, required: false }
+    value: { type: VARCHAR, required: false }
+    _indexes: { ABRecent_date_index: [property, date], ABRecent_value_index: [property, value] }
+  ABStore:
+    _attributes: { phpName: Abstore }
+    ROWID: { type: VARCHAR, primaryKey: true, autoIncrement: true, required: false }
+    Name: { type: VARCHAR, required: false }
+    ExternalIdentifier: { type: VARCHAR, required: false }
+    Type: { type: VARCHAR, primaryKey: true, required: false }
+    ConstraintsPath: { type: VARCHAR, required: false }
+    ExternalModificationTag: { type: VARCHAR, required: false }
+    StoreInternalIdentifier: { type: VARCHAR, required: false }
+    AccountIdentifier: { type: VARCHAR, required: false }
+    _indexes: { sqlite_autoindex_ABStore_1: [StoreInternalIdentifier] }
+  FirstSortSectionCount:
+    _attributes: { phpName: Firstsortsectioncount }
+    LanguageIndex: { type: VARCHAR, required: false }
+    Section: { type: VARCHAR, required: false }
+    StoreID: { type: VARCHAR, required: false }
+    number: { type: VARCHAR, required: false }
+    _indexes: { sqlite_autoindex_FirstSortSectionCount_1: [LanguageIndex, Section, StoreID] }
+  LastSortSectionCount:
+    _attributes: { phpName: Lastsortsectioncount }
+    LanguageIndex: { type: VARCHAR, required: false }
+    Section: { type: VARCHAR, required: false }
+    StoreID: { type: VARCHAR, required: false }
+    number: { type: VARCHAR, required: false }
+    _indexes: { sqlite_autoindex_LastSortSectionCount_1: [LanguageIndex, Section, StoreID] }
+  _SqliteDatabaseProperties:
+    _attributes: { phpName: Sqlitedatabaseproperties }
+    key: { type: VARCHAR, required: false }
+    value: { type: VARCHAR, required: false }
+    _indexes: { sqlite_autoindex__SqliteDatabaseProperties_1: [key] }
+  sqlite_sequence:
+    _attributes: { phpName: SqliteSequence }
+    name: { type: VARCHAR, required: false }
+    seq: { type: VARCHAR, required: false }

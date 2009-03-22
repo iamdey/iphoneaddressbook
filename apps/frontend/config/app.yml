@@ -1,0 +1,10 @@
+# default values
+all:
+  .arrays:
+    multivaluelabels: 
+      - Mobile
+      - Home
+      - Homepage
+      - Work
+      - Other
+      - Main

@@ -1,0 +1,46 @@
+Iphone csv export V1.0
+
+Welcome to iphone Address book csv export application.
+
+This application is made for export data from addressBook in csv to import contacts on yahoo address book, It can be modified to do what you want to do. Have fun
+
+Requires
+
+    * A jailbroken iPhone with ssh (firmware 2.2.1)
+    * A webserver to install this application
+
+Installation
+
+   1. Install this application on a web server with PHP 5 (this has been test on LAMP)
+   2. Get your iphone addressBook database (you can get it through ssh : /var/mobile/Library/AddressBook/AddressBook.sqlitedb on your jailbroken iPhone)
+   3. Copy your addressBook database to /data/AddressBook.sqlitedb in this application
+
+Usage
+
+   1. Display this application on a web browser (generaly http://localhost/iphoneAddressBook/web/)
+   2. List your contacts and check if your datas are correctly displayed
+   3. Click Save as csv, that's all folk
+
+Troubleshooting
+
+First make sure you have the right to launch the application then in your web folder try sudo chown -R www-data\: iphoneAddressBook on a linux environnement
+
+The second tips is to clear cache of the application by dooing th following in the application folder symfony cc
+
+Then you can try to cry or get mad but I'm not sure that works
+
+Advanced
+
+There's a bit more configuration you want to do
+Labels of phone numbers or emails does not match correctly to your data
+
+Edit the file /apps/frontend/config/app.yml, take care to not add tabulations at start of each lines then modify or add the list of multivaluelabels section in the order you want
+The exported csv file does not match to your needs
+
+Edit the file /apps/frontend/modules/person/templates/listSuccess.csv.php and modify as you want (You need few skills in php language)
+
+About
+
+My name is David Epely aka esion. You can contact me by email : esion99[at]gmail[dot]com and check my blog http://esion99.info
+
+This is an open source application released on MIT License. Feel free.

@@ -1,0 +1,1 @@
+Birthdate : <?php echo $date ?>

@@ -1,0 +1,27 @@
+personlist:
+  url:   /person/list.:sf_format
+  param: { module: person, action: list }
+  requirements:
+    sf_format: (?:html|csv)
+  
+
+abperson:
+  class: sfPropelRouteCollection
+  options:
+    model:               Abperson
+    module:              abperson
+    prefix_path:         abperson
+    column:              ROWID
+    with_wildcard_routes: true
+
+# default rules
+homepage:
+  url:   /
+  param: { module: general, action: index }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
